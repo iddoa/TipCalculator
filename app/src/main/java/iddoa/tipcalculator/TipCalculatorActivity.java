@@ -23,13 +23,19 @@ public class TipCalculatorActivity extends AppCompatActivity {
         CheckBox cb = (CheckBox) findViewById(R.id.chkRound);
         double numVal = Double.parseDouble(billString);
         numVal = numVal * 0.12;
+        String result;
         //checking if rounding up is needed
         if (cb.isChecked() == true) {
-            // i added the 0.5 to make sure it rounds up like requested rather than the default round
+            // when rounding, lose the decimal
             numVal = Math.ceil(numVal);
+            int roundVal = (int) numVal;
+            result = Integer.toString(roundVal);
         }
-        // string with 2 digits after decimal point (more wont mean anything talking about dollars)
-        String result = String.format("%.2f", numVal);
+        else
+        {
+			// string with 2 digits after decimal point
+            result = String.format("%.2f", numVal);
+        }
         return "$ " + result;
     }
 
